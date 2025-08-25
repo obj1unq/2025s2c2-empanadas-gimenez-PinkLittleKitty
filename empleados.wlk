@@ -33,14 +33,12 @@ object galvan {
     }
 
     method pagarDeuda() {
-        if (deuda > 0) {
-            if (dinero >= deuda) {
-                dinero = dinero - deuda
-                deuda = 0
-            } else {
-                deuda = deuda - dinero
-                dinero = 0
-            }
+        if (deuda > 0 && dinero >= deuda) {
+            dinero = dinero - deuda
+            deuda = 0
+        } else {
+            deuda = deuda - dinero
+            dinero = 0
         }
     }
 
