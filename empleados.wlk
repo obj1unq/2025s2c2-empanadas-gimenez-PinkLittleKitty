@@ -2,7 +2,6 @@ object galvan {
     var sueldo = 15000
     var totalCobrado = 0
     var dinero = 0
-    var deuda = 0
 
     method sueldo(_sueldo) {
         sueldo = _sueldo
@@ -11,7 +10,6 @@ object galvan {
     method sueldo() {
         totalCobrado = totalCobrado + sueldo
         dinero = dinero + sueldo
-        self.pagarDeuda()
         return sueldo
     }
 
@@ -19,33 +17,24 @@ object galvan {
         return totalCobrado
     }
 
-    method gastar(_cantidad) {
-        if (dinero < _cantidad) {
-            deuda = deuda + (_cantidad - dinero)
-            dinero = 0
-        } else {
-            dinero = dinero - _cantidad
-        }
+    method gastar(cantidad) {
+            dinero = dinero - cantidad
     }
 
     method deuda() {
-        return deuda
-    }
-
-    method pagarDeuda() {
-        if (deuda > 0) {
-            if (dinero >= deuda) {
-                dinero = dinero - deuda
-                deuda = 0
-            } else {
-                deuda = deuda - dinero
-                dinero = 0
-            }
+        if (dinero < 0) {
+            return -dinero
+        } else {
+            return 0
         }
     }
 
     method dinero() {
-        return dinero
+        if (dinero < 0) {
+            return 0
+        } else {
+            return dinero
+        }
     }
 }
 
